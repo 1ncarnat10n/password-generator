@@ -18,7 +18,6 @@ function getPasswordOptions () {
   while (passwordLength !== null) {
     if (isNaN(passwordLength) || passwordLength <= 8 || passwordLength >= 128) {
       passwordLength = parseInt(window.prompt("Invalid number or letter. Please choose a number from 8 to 128 as the password's length."));
-      // The 'else' statement is used to specify if the statement above is false then it will go ahead and execute the code below it. The 'break' statement breaks out of the loop and continues executing the code after the loop.
     } 
     else {
       break;
@@ -52,8 +51,24 @@ function getPasswordOptions () {
   if (promptChoices.length === 0) {
     window.alert("Ooops, you must choose at least one character type. Please try again.");
   }
-  
+
   return;
+}
+
+// Function to randomize password characters
+function getRandom() {
+  return promptChoices[Math.floor(Math.random() * promptChoices.length)];
+}
+
+// Function to generate password
+function generatePassword() {
+  getPasswordOptions();
+
+  var displayPassword = "";
+  for (let i = 0; i < characterLengthPrompt; i++) {
+    displayPassword += getRandom();
+  }
+  return displayPassword;
 }
 
 // Write password to the #password input
