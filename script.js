@@ -4,9 +4,8 @@ var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialCharacters = ["@", "%", "+", "\\", "/", "'", "!", "#", "$", "^", "?", ":", ",", ")", "(", "}", "{", "]", "[", "~", "-", "_", "."];
 
 var characterLength = 0;
-var characterLengthPrompt = 0;
-var promptChoices = [];
 var passwordLength = 0;
+var promptChoices = [];
 
 var generateBtn = document.querySelector("#generate");
 
@@ -16,7 +15,7 @@ function getPasswordOptions () {
   passwordLength = parseInt(window.prompt("Please choose a number from 8 to 128 as the password's length."));
 
   while (passwordLength !== null) {
-    if (isNaN(passwordLength) || passwordLength <= 8 || passwordLength >= 128) {
+    if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
       passwordLength = parseInt(window.prompt("Invalid number or letter. Please choose a number from 8 to 128 as the password's length."));
     } 
     else {
@@ -65,7 +64,7 @@ function generatePassword() {
   getPasswordOptions();
 
   var displayPassword = "";
-  for (let i = 0; i < characterLengthPrompt; i++) {
+  for (let i = 0; i < passwordLength; i++) {
     displayPassword += getRandom();
   }
   return displayPassword;
